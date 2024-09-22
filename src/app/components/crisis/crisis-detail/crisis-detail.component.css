@@ -1,0 +1,62 @@
+.crisis-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between elements */
+  padding: 16px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 1.2em;
+  color: #3f51b5; /* Angular Material primary color */
+}
+
+h4 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #333; /* Dark color for subtitles */
+}
+
+strong {
+  color: #333; /* Dark color for labels */
+}
+
+mat-dialog-content {
+  max-width: 500px; /* Set a max width for the modal */
+}
+
+mat-dialog-actions {
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.profiles-section {
+  background-color: #f9f9f9; /* Light background for the profiles section */
+  padding: 12px;
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ddd; /* Light border */
+}
+
+ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px; /* Space between profile items */
+}
+
+button {
+  background-color: #3f51b5; /* Primary color for button */
+  color: white; /* White text color */
+  padding: 8px 16px; /* Button padding */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+button:hover {
+  background-color: #303f9f; /* Darker shade on hover */
+}

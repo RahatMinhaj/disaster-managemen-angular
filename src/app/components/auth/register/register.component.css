@@ -1,0 +1,50 @@
+.form-container {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container img {
+  border-radius: 15px 0 0 15px;
+  object-fit: cover;
+}
+
+.login-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.btn-custom {
+  background-color: #FF5722;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.btn-custom:hover {
+  background-color: #E64A19;
+}
+
+.link-custom {
+  color: #FF5722;
+  font-weight: 500;
+}
+
+.link-custom:hover {
+  text-decoration: underline;
+  color: #D84315;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+  }
+
+  .form-container img {
+    border-radius: 15px 15px 0 0;
+  }
+}

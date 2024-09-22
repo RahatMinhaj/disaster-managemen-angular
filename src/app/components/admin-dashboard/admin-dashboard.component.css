@@ -1,0 +1,43 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+mat-sidenav-container {
+  height: 100vh; /* Full viewport height */
+}
+
+mat-sidenav {
+  width: 20%;
+
+}
+
+.mat-drawer {
+  background-color: #BFE7F9;
+  color: #fff;
+}
+
+.main-content {
+  padding: 20px;
+  height: calc(100vh); /* Adjust if you have a header */
+}
+.sidenavdropdown{
+  background-color: #BFE7F9;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.profile-container {
+  display: flex;
+  align-items: center; /* Center the profile items */
+}
+
+.toolbar-spacer {
+  flex: 1; /* Takes up remaining space */
+}
+
+/* Rest of your styles... */

@@ -1,0 +1,57 @@
+
+<div class="container p-5">
+  <div class="heading bg-info">
+    <h3 class="text-light text-center p-2">Add New Crisis</h3>
+  </div>
+  <br/>
+  <form [formGroup]="donationForm" (ngSubmit)="create()">
+    <div class="row">
+      <div class="form-group col">
+        <label for="name">Name: <span class="text-danger">*</span></label>
+        <input class="form-control" type="text" id="name" formControlName="name" required/>
+        <div
+          *ngIf="donationForm.get('name')?.invalid && (donationForm.get('name')?.touched || donationForm.get('name')?.dirty)"
+          class="text-danger">
+          <small *ngIf="donationForm.get('name')?.errors?.['required']">Name is required.</small>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="title">Phone: <span class="text-danger">*</span></label>
+        <input class="form-control" type="text" id="title" formControlName="phone" required/>
+        <div
+          *ngIf="donationForm.get('phone')?.invalid && (donationForm.get('phone')?.touched || donationForm.get('phone')?.dirty)"
+          class="text-danger">
+          <small *ngIf="donationForm.get('phone')?.errors?.['required']">Title is required.</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="description">Donate Money:</label>
+        <input type="number" class="form-control" id="description" formControlName="donationAmount"/>
+        <div
+          *ngIf="donationForm.get('donationAmount')?.invalid && (donationForm.get('donationAmount')?.touched || donationForm.get('donationAmount')?.dirty)"
+          class="text-danger">
+          <small *ngIf="donationForm.get('donationAmount')?.errors?.['donationAmount']">Title is required.</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="transactionId">Transaction ID:</label>
+        <input type="text" class="form-control" id="transactionId" formControlName="transactionId" placeholder="Transaction Id"/>
+        <div
+          *ngIf="donationForm.get('transactionId')?.invalid && (donationForm.get('transactionId')?.touched || donationForm.get('transactionId')?.dirty)"
+          class="text-danger">
+          <small *ngIf="donationForm.get('transactionId')?.errors?.['transactionId']">Title is required.</small>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-info btn-lg me-2" [disabled]="donationForm.invalid">Save Crisis</button>
+    </div>
+  </form>
+</div>
+
+
+

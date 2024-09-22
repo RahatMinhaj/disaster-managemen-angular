@@ -1,0 +1,102 @@
+<div>
+  <!-- Header -->
+  <header class="mat-elevation-z4 d-flex justify-content-between align-items-center p-3 bg-primary text-white">
+    <div class="logo h3">Disaster Management</div>
+    <nav>
+      <mat-toolbar-row>
+        <a mat-button class="text-white" routerLink="/home">Home</a>
+        <a mat-button class="text-white" routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
+        <a mat-button class="text-white" routerLink="/register"  *ngIf="!isLoggedIn()">Register</a>
+        <a mat-button class="text-white" routerLink="/admin"  *ngIf="isLoggedIn()">Admin Panel</a>
+      </mat-toolbar-row>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center text-center text-white py-5" style="background: url('assets/pexels-denniz-futalan-339724-942560.jpg') no-repeat center center/cover; min-height: 60vh;">
+    <h1 class="display-4">Join the Movement, Help those in Need</h1>
+    <button mat-raised-button color="accent" class="mt-3" (click)="openDialogForDonation()">Make A Donation</button>
+  </section>
+
+
+  <!-- Crisis Reports Section -->
+  <section class="crisis  py-5">
+    <div class="container">
+      <div class="crisis-header mb-4">
+        <h2 class="text-center">Recent Crises</h2>
+        <button mat-raised-button color="primary" (click)="openDialog()">Report a Crisis</button>
+      </div>
+    <!-- Table to display data -->
+    <div  class="mat-elevation-z8 table_wrapper">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" >
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Application Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <!-- Geo Code Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef> Title </th>
+          <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        </ng-container>
+
+        <!-- Latitude Column -->
+        <ng-container matColumnDef="requiredHelp">
+          <th mat-header-cell *matHeaderCellDef> Help Necessity </th>
+          <td mat-cell *matCellDef="let row"> {{row.requiredHelp ? 'Yes' : 'No'}} </td>
+        </ng-container>
+
+        <!-- Longitude Column -->
+        <ng-container matColumnDef="severity">
+          <th mat-header-cell *matHeaderCellDef> Condition </th>
+          <td mat-cell *matCellDef="let row"> {{row.severity}} </td>
+        </ng-container>
+
+        <!-- Longitude Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <!-- Longitude Column -->
+        <ng-container matColumnDef="entryTime">
+          <th mat-header-cell *matHeaderCellDef> Entry Time </th>
+          <td mat-cell *matCellDef="let row"> {{row.entryTime}} </td>
+        </ng-container>
+
+        <!-- Header and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- No Data Available Message -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter criteria.</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [length]="pageable ? pageable.totalElements : 0"
+      [pageSize]="pageable ? pageable.pageSize : 5"
+      [pageSizeOptions]="[5, 10, 15, 20]"
+      (page)="pageChange($event)"
+      aria-label="Select page of divisions">
+    </mat-paginator>
+    </div>
+  </section>
+
+  <section class="fund-stats text-center py-5 bg-light">
+    <h2>Total Funds Donated</h2>
+    <div class="stats my-4">
+      <p>Total Donations: $100,000</p>
+      <div echarts [options]="chartOptions" class="chart-container"></div>
+    </div>
+  </section>
+
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Disaster Management - Minhazul Islam</p>
+  </footer>
+</div>

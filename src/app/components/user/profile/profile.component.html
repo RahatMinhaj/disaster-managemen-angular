@@ -1,0 +1,221 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Appointment List:</li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="heading bg-info">
+    <h3 class="text-light text-center p-2">Add New Profile</h3>
+  </div>
+  <br/>
+
+  <form [formGroup]="createProfileForm" (ngSubmit)="create()">
+    <div class="row">
+      <div class="form-group col">
+        <label for="name">Name: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          formControlName="name"
+          required
+        />
+        <div *ngIf="createProfileForm.get('name')?.invalid && (createProfileForm.get('name')?.touched || createProfileForm.get('name')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('name')?.errors?.['required']">Name is required.</small>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="mobileNo">Mobile No: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="text"
+          id="mobileNo"
+          formControlName="mobileNo"
+          required
+        />
+        <div *ngIf="createProfileForm.get('mobileNo')?.invalid && (createProfileForm.get('mobileNo')?.touched || createProfileForm.get('mobileNo')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('mobileNo')?.errors?.['required']">Mobile No is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="email">Email: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+        />
+        <div *ngIf="createProfileForm.get('email')?.invalid && (createProfileForm.get('email')?.touched || createProfileForm.get('email')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('email')?.errors?.['required']">Email is required.</small>
+          <small *ngIf="createProfileForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="address">Address:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="address"
+          formControlName="address"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="genderType">Gender: <span class="text-danger">*</span></label>
+        <select class="form-select" id="genderType" formControlName="genderType" required>
+          <option value="">Select Gender</option>
+          <option *ngFor="let gender of genderTypes | keyvalue" [value]="gender.key">{{ gender.value }}</option>
+        </select>
+        <div *ngIf="createProfileForm.get('genderType')?.invalid && (createProfileForm.get('genderType')?.touched || createProfileForm.get('genderType')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('genderType')?.errors?.['required']">Gender is required.</small>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="dateOfBirth">Date of Birth: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="date"
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+          required
+        />
+        <div *ngIf="createProfileForm.get('dateOfBirth')?.invalid && (createProfileForm.get('dateOfBirth')?.touched || createProfileForm.get('dateOfBirth')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('dateOfBirth')?.errors?.['required']">Date of Birth is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="userName">User Name: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="text"
+          id="userName"
+          formControlName="userName"
+          required
+        />
+        <div *ngIf="createProfileForm.get('userName')?.invalid && (createProfileForm.get('userName')?.touched || createProfileForm.get('userName')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('userName')?.errors?.['required']">User Name is required.</small>
+        </div>
+      </div>
+      <div class="form-group col">
+        <label for="password">Password: <span class="text-danger">*</span></label>
+        <input
+          class="form-control"
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+        />
+        <div *ngIf="createProfileForm.get('password')?.invalid && (createProfileForm.get('password')?.touched || createProfileForm.get('password')?.dirty)" class="text-danger">
+          <small *ngIf="createProfileForm.get('password')?.errors?.['required']">Password is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-info btn-lg me-2" [disabled]="createProfileForm.invalid">Create Profile</button>
+    </div>
+  </form>
+</div>
+
+
+
+  <div class="row">
+    <!-- Search input for filtering by 'name' -->
+    <mat-form-field class="col">
+      <input matInput placeholder="Search by Name" (keyup)="applyDynamicFilter('name', $event)">
+    </mat-form-field>
+
+    <!-- Example additional filter (can be modified for other filters) -->
+    <mat-form-field class="col">
+      <input matInput placeholder="Search by Geo Code" (keyup)="applyDynamicFilter('geoCode', $event)">
+    </mat-form-field>
+
+    <!-- Example additional filter (can be modified for other filters) -->
+    <mat-form-field class="col">
+      <input matInput placeholder="Search by Latitute" (keyup)="applyDynamicFilter('latitude', $event)">
+    </mat-form-field>
+
+    <!-- Example additional filter (can be modified for other filters) -->
+    <mat-form-field class="col">
+      <input matInput placeholder="Search by Longitude" (keyup)="applyDynamicFilter('longitude', $event)">
+    </mat-form-field>
+  </div>
+
+
+  <!-- Table to display data -->
+  <div class="mat-elevation-z8 table_wrapper">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+      <!-- Name Column -->
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.name }}</td>
+      </ng-container>
+
+      <!-- Geo Code Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.userDto?.email }}</td>
+      </ng-container>
+
+      <!-- Latitude Column -->
+      <ng-container matColumnDef="mobileNo">
+        <th mat-header-cell *matHeaderCellDef> Mobile Number</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.mobileNo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="genderType">
+        <th mat-header-cell *matHeaderCellDef> Gender</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.genderType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfBirth">
+        <th mat-header-cell *matHeaderCellDef> DOB</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.dateOfBirth }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="userType">
+        <th mat-header-cell *matHeaderCellDef> User Type</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.userDto?.userType }}</td>
+      </ng-container>
+
+      <!-- Longitude Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status</th>
+        <td mat-cell *matCellDef="let row"> {{ row?.status }}</td>
+      </ng-container>
+
+
+      <!-- Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- No Data Available Message -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter criteria.</td>
+      </tr>
+    </table>
+  </div>
+
+
+<!-- Paginator -->
+<mat-paginator
+  [length]="pageable ? pageable.totalElements : 0"
+  [pageSize]="pageable ? pageable.pageSize : 10"
+  [pageSizeOptions]="[10, 20, 30, 100]"
+  (page)="pageChange($event)"
+  aria-label="Select page of divisions">
+</mat-paginator>

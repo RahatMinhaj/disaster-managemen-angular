@@ -1,0 +1,61 @@
+/* Custom styles complementing Angular Material */
+
+/* Hero Section */
+.hero {
+  min-height: 60vh;
+}
+
+/* Fund Statistics */
+.fund-stats {
+  background-color: #f8f9fa;
+}
+
+.chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+  height: 400px; /* Set chart height */
+}
+
+/* Crisis Reports */
+.crisis {
+  background-color: #f9f9f9;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+
+  a {
+    color: #ff5733;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+::ng-deep .mat-dialog-content {
+  max-height: 80vh; /* Adjust this value as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.crisis-header {
+  display: flex;               /* Enable flexbox */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: center;        /* Center items vertically */
+  width: 100%;                /* Full width */
+}
+
+.crisis-header h2 {
+  margin: 0;                  /* Remove default margin */
+  flex: 1;                    /* Allow the heading to take available space */
+  text-align: left;           /* Align text to the left */
+}
+
+.crisis-header button {
+  margin-left: 16px;          /* Add some space between the text and button */
+}
+
+

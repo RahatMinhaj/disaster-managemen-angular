@@ -1,0 +1,94 @@
+<mat-sidenav-container >
+  <mat-sidenav mode="side" #sidenav opened="opened" position="start">
+    <mat-nav-list>
+      <mat-list-item routerLink="/admin" class="mb-5">
+        <mat-icon class="align-middle dash-icon">dashboard</mat-icon>
+        <span class="align-middle logoicon">Adminboard</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/crisis-list">
+        <span class="align-middle logoicon">All Crisis</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/profile-list">
+        <span class="align-middle logoicon">Volunteers</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/donations">
+        <span class="align-middle logoicon">Donation</span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/admin/inventories">
+        <span class="align-middle logoicon">Inventory</span>
+      </mat-list-item>
+
+
+      <mat-expansion-panel [class.mat-elevation-z0]="true" class="sidenavdropdown">
+        <mat-expansion-panel-header>
+          Configuration
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item routerLink="/admin/product-categories">
+            <span>Product Category</span>
+          </a>
+          <a mat-list-item routerLink="/admin/divisions">
+            <span>Division</span>
+          </a>
+          <a mat-list-item routerLink="/admin/districts">
+            <span>District</span>
+          </a>
+          <a mat-list-item routerLink="/admin/police-stations">
+            <span>Police Station</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [class.mat-elevation-z0]="true" class="sidenavdropdown">
+        <mat-expansion-panel-header>
+          <i class="fa-solid fa-mortar-pestle fa-2x me-4"></i>
+          User Management
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item routerLink="/admin/user-list">
+            <span>User List</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+
+
+
+
+
+      <mat-list-item routerLink="/" class="mt-5 d-flex justify-content-center">
+        <!-- <mat-icon class="align-middle dash-icon">dashboard</mat-icon> -->
+        <span class="align-middle lead fw-bold text-uppercase">Back To Index Page</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Hospital Management System</span>
+      <span class="toolbar-spacer"></span>
+      <div class="profile-container">
+        <div class="bg-dark test rounded-circle me-2"></div>
+        <div class="tool_profile" [matMenuTriggerFor]="profileMenu">
+          <h3>Minhajul Islam</h3>
+        </div>
+        <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+
+        <div class="main-content">
+          <router-outlet></router-outlet>
+        </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

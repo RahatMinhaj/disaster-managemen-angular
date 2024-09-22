@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Crisis Details</h2>
+<div mat-dialog-content class="container">
+  <div class="crisis-details">
+    <h3>{{ crisis?.title }}</h3>
+    <p><strong>Name:</strong> {{ crisis?.name }}</p>
+    <p><strong>Required Help:</strong> {{ crisis?.requiredHelp ? 'Yes' : 'No' }}</p>
+    <p><strong>Condition:</strong> {{ crisis?.severity }}</p>
+    <p><strong>Description:</strong> {{ crisis?.description }}</p>
+    <p><strong>Address:</strong> {{ crisis?.address }}</p>
+    <p><strong>Location:</strong> {{ crisis?.location }}</p>
+    <p><strong>Status:</strong> {{ crisis?.status }}</p>
+    <div class="profiles-section" *ngIf="crisis?.profileDtos?.length">
+      <h4>Profiles Involved:</h4>
+      <ul>
+        <li *ngFor="let profile of crisis?.profileDtos">
+          <strong>Name:</strong> {{ profile.name }} <br>
+          <strong>Status:</strong> {{ profile.status }} <br>
+          <strong>Gender:</strong> {{ profile.genderType }} <br>
+          <strong>Date of Birth:</strong> {{ profile.dateOfBirth | date:'shortDate' }} <br>
+        </li>
+      </ul>
+    </div>
+
+
+    <div >
+      <div class="heading">
+        <h2 class="text-left ">Add Volunteers to the crisis</h2>
+      </div>
+      <br/>
+    <!-- Multi-Select Dropdown for Profiles -->
+    <mat-form-field class="w-50">
+      <mat-label>Select Profiles</mat-label>
+      <mat-select [(ngModel)]="selectedProfileIds" multiple>
+        <mat-option *ngFor="let profile of profiles" [value]="profile.id">
+          {{ profile.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <div mat-dialog-actions>
+        <button mat-button color="warn" class="text-light" (click)="volunteerAssignment(crisis?.id)">Assign</button>
+      </div>
+
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button color="warn" class="text-light" (click)="onClose()">Close</button>
+    </div>
+
+  </div>
+
+</div>
+
+
